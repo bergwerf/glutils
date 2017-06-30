@@ -46,12 +46,12 @@ class GlShader {
   /// Compile shader in the given GL context.
   void compile() {
     // Vertex shader compilation
-    final gl.Shader vs = _ctx.createShader(gl.RenderingContext.VERTEX_SHADER);
+    final vs = _ctx.createShader(gl.RenderingContext.VERTEX_SHADER);
     _ctx.shaderSource(vs, vertexShaderSource);
     _ctx.compileShader(vs);
 
     // Fragment shader compilation
-    final gl.Shader fs = _ctx.createShader(gl.RenderingContext.FRAGMENT_SHADER);
+    final fs = _ctx.createShader(gl.RenderingContext.FRAGMENT_SHADER);
     _ctx.shaderSource(fs, fragmentShaderSource);
     _ctx.compileShader(fs);
 
@@ -76,16 +76,16 @@ class GlShader {
 
     // Link shader attributes.
     attributes = new Map<String, int>();
-    _attributes.forEach((String attrib) {
+    for (final attrib in _attributes) {
       attributes[attrib] = _ctx.getAttribLocation(_shaderProgram, attrib);
       _ctx.enableVertexAttribArray(attributes[attrib]);
-    });
+    }
 
     // Link shader uniforms.
     uniforms = new Map<String, gl.UniformLocation>();
-    _uniforms.forEach((String uniform) {
+    for (final uniform in _uniforms) {
       uniforms[uniform] = _ctx.getUniformLocation(_shaderProgram, uniform);
-    });
+    }
   }
 
   /// Primary view matrix index

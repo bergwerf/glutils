@@ -97,14 +97,14 @@ abstract class GlCanvas {
 
     // Schedule next frame.
     if (!_pause) {
-      this._scheduleFrame();
+      _scheduleFrame();
     }
   }
 
   /// Start rendering
   void start() {
     _pause = false;
-    this._scheduleFrame();
+    _scheduleFrame();
   }
 
   /// Pause rendering
@@ -114,8 +114,6 @@ abstract class GlCanvas {
 
   /// Schedule a new render cycle.
   void _scheduleFrame() {
-    window.requestAnimationFrame((num time) {
-      _draw(time);
-    });
+    window.requestAnimationFrame(_draw);
   }
 }

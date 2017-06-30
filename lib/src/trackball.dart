@@ -104,7 +104,9 @@ class Trackball {
   }
 
   void onPointerMove(num x, num y) {
-    if (!_mouse.down) return;
+    if (!_mouse.down) {
+      return;
+    }
 
     // Apply rotation to rotationMatrix.
     final matrix = new Matrix4.identity();
@@ -125,6 +127,7 @@ class Trackball {
     }
   }
 
+  // ignore: use_setters_to_change_properties
   void onZoom(num factor) {
     _mouse.z *= factor;
   }

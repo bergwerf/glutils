@@ -11,6 +11,9 @@ class GlGeometry {
 
   GlGeometry(this.wireframe, this.surface);
 
+  /// Get geometry transformation.
+  Matrix4 get transform => wireframe.transform;
+
   /// Set the transformation of [wireframe] and [surface] at once.
   set transform(Matrix4 matrix) {
     wireframe.transform = matrix;
