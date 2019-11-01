@@ -1,5 +1,5 @@
 // Copyright (c) 2016, Herman Bergwerf. All rights reserved.
-// Use of this source code is governed by an AGPL-3.0-style license
+// Use of this source code is governed by a MIT-style license
 // that can be found in the LICENSE file.
 
 part of glutils;
@@ -36,7 +36,8 @@ abstract class _GlBuffer<D extends List> {
   final gl.Buffer buffer;
 
   _GlBuffer(gl.RenderingContext ctx,
-      [this._usage = gl.STATIC_DRAW, this._target = gl.ARRAY_BUFFER])
+      [this._usage = gl.WebGL.STATIC_DRAW,
+      this._target = gl.WebGL.ARRAY_BUFFER])
       : _ctx = ctx,
         buffer = ctx.createBuffer();
 
@@ -82,7 +83,7 @@ abstract class _GlBuffer<D extends List> {
 /// Buffer for directly storing typed data
 class GlBuffer<D extends List> extends _GlBuffer<D> {
   GlBuffer(gl.RenderingContext ctx,
-      {int usage: gl.STATIC_DRAW, int target: gl.ARRAY_BUFFER})
+      {int usage: gl.WebGL.STATIC_DRAW, int target: gl.WebGL.ARRAY_BUFFER})
       : super(ctx, usage, target);
 
   void update(D data) => rawUpdate(data);
@@ -97,10 +98,10 @@ class GlBuffer<D extends List> extends _GlBuffer<D> {
 /// Buffer for element indices
 class GlIndexBuffer extends GlBuffer<Uint16List> {
   /// Type used for element index buffers.
-  static const indexBufferType = gl.UNSIGNED_SHORT;
+  static const indexBufferType = gl.WebGL.UNSIGNED_SHORT;
 
-  GlIndexBuffer(gl.RenderingContext ctx, [int usage = gl.STATIC_DRAW])
-      : super(ctx, usage: usage, target: gl.ELEMENT_ARRAY_BUFFER);
+  GlIndexBuffer(gl.RenderingContext ctx, [int usage = gl.WebGL.STATIC_DRAW])
+      : super(ctx, usage: usage, target: gl.WebGL.ELEMENT_ARRAY_BUFFER);
 }
 
 /// Buffer for storing vector lists
@@ -110,29 +111,29 @@ class GlVectorBuffer<V extends Vector, L extends VectorList<V>>
   final int vectorSize;
 
   GlVectorBuffer(gl.RenderingContext ctx, this.vectorSize,
-      [int usage = gl.STATIC_DRAW])
-      : super(ctx, usage, gl.ARRAY_BUFFER);
+      [int usage = gl.WebGL.STATIC_DRAW])
+      : super(ctx, usage, gl.WebGL.ARRAY_BUFFER);
 
   void update(L data) => rawUpdate(data.buffer);
 
   /// Add attribute link.
   void link(String attribute, [int stride = 0, int offset = 0]) {
-    _attribs.add(
-        new AttribPointer(attribute, gl.FLOAT, vectorSize, stride, offset));
+    _attribs.add(new AttribPointer(
+        attribute, gl.WebGL.FLOAT, vectorSize, stride, offset));
   }
 }
 
 class GlVector2Buffer extends GlVectorBuffer<Vector2, Vector2List> {
-  GlVector2Buffer(gl.RenderingContext ctx, [int usage = gl.STATIC_DRAW])
+  GlVector2Buffer(gl.RenderingContext ctx, [int usage = gl.WebGL.STATIC_DRAW])
       : super(ctx, 2, usage);
 }
 
 class GlVector3Buffer extends GlVectorBuffer<Vector3, Vector3List> {
-  GlVector3Buffer(gl.RenderingContext ctx, [int usage = gl.STATIC_DRAW])
+  GlVector3Buffer(gl.RenderingContext ctx, [int usage = gl.WebGL.STATIC_DRAW])
       : super(ctx, 3, usage);
 }
 
 class GlVector4Buffer extends GlVectorBuffer<Vector4, Vector4List> {
-  GlVector4Buffer(gl.RenderingContext ctx, [int usage = gl.STATIC_DRAW])
+  GlVector4Buffer(gl.RenderingContext ctx, [int usage = gl.WebGL.STATIC_DRAW])
       : super(ctx, 4, usage);
 }

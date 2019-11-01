@@ -1,5 +1,5 @@
 // Copyright (c) 2016, Herman Bergwerf. All rights reserved.
-// Use of this source code is governed by an AGPL-3.0-style license
+// Use of this source code is governed by a MIT-style license
 // that can be found in the LICENSE file.
 
 part of glutils;
@@ -46,12 +46,12 @@ abstract class GlCanvas {
 
     // Load our default WebGL settings.
     ctx.clearColor(0.0, 0.0, 0.0, 1.0);
-    ctx.enable(gl.CULL_FACE);
-    ctx.cullFace(gl.FRONT);
-    ctx.enable(gl.DEPTH_TEST);
-    ctx.depthFunc(gl.LESS);
-    ctx.enable(gl.BLEND);
-    ctx.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    ctx.enable(gl.WebGL.CULL_FACE);
+    ctx.cullFace(gl.WebGL.FRONT);
+    ctx.enable(gl.WebGL.DEPTH_TEST);
+    ctx.depthFunc(gl.WebGL.LESS);
+    ctx.enable(gl.WebGL.BLEND);
+    ctx.blendFunc(gl.WebGL.SRC_ALPHA, gl.WebGL.ONE_MINUS_SRC_ALPHA);
 
     // Create projection matrix.
     updateViewport();
@@ -85,7 +85,7 @@ abstract class GlCanvas {
   /// Internal draw cycle
   void _draw(num time) {
     // Clear view
-    ctx.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    ctx.clear(gl.WebGL.COLOR_BUFFER_BIT | gl.WebGL.DEPTH_BUFFER_BIT);
 
     // Run main draw method.
     draw(

@@ -1,5 +1,5 @@
 // Copyright (c) 2016, Herman Bergwerf. All rights reserved.
-// Use of this source code is governed by an AGPL-3.0-style license
+// Use of this source code is governed by a MIT-style license
 // that can be found in the LICENSE file.
 
 part of glutils;
@@ -7,7 +7,7 @@ part of glutils;
 /// Shader helper
 class GlShader {
   /// Rendering context
-  gl.RenderingContext _ctx;
+  final gl.RenderingContext _ctx;
 
   /// Vertex shader
   final String vertexShaderSource;
@@ -46,12 +46,12 @@ class GlShader {
   /// Compile shader in the given GL context.
   void compile() {
     // Vertex shader compilation
-    final vs = _ctx.createShader(gl.RenderingContext.VERTEX_SHADER);
+    final vs = _ctx.createShader(gl.WebGL.VERTEX_SHADER);
     _ctx.shaderSource(vs, vertexShaderSource);
     _ctx.compileShader(vs);
 
     // Fragment shader compilation
-    final fs = _ctx.createShader(gl.RenderingContext.FRAGMENT_SHADER);
+    final fs = _ctx.createShader(gl.WebGL.FRAGMENT_SHADER);
     _ctx.shaderSource(fs, fragmentShaderSource);
     _ctx.compileShader(fs);
 
@@ -63,14 +63,13 @@ class GlShader {
 
     // Check if shaders were compiled properly. This is probably the most
     // painful part since there's no way to "debug" shader compilation.
-    if (!_ctx.getShaderParameter(vs, gl.RenderingContext.COMPILE_STATUS)) {
+    if (!_ctx.getShaderParameter(vs, gl.WebGL.COMPILE_STATUS)) {
       throw new Exception(_ctx.getShaderInfoLog(vs));
     }
-    if (!_ctx.getShaderParameter(fs, gl.RenderingContext.COMPILE_STATUS)) {
+    if (!_ctx.getShaderParameter(fs, gl.WebGL.COMPILE_STATUS)) {
       throw new Exception(_ctx.getShaderInfoLog(fs));
     }
-    if (!_ctx.getProgramParameter(
-        _shaderProgram, gl.RenderingContext.LINK_STATUS)) {
+    if (!_ctx.getProgramParameter(_shaderProgram, gl.WebGL.LINK_STATUS)) {
       throw new Exception(_ctx.getProgramInfoLog(_shaderProgram));
     }
 

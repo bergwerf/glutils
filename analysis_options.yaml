@@ -1,5 +1,3 @@
-analyzer:
-  strong-mode: true
 linter:
   rules:
 
@@ -15,7 +13,10 @@ linter:
   - control_flow_in_finally
   - empty_statements
   - hash_and_equals
-  - invariant_booleans
+
+  # High CPU usage.
+  #- invariant_booleans
+
   - iterable_contains_unrelated_type
   - list_remove_unrelated_type
   - literal_only_boolean_expressions
@@ -23,6 +24,7 @@ linter:
   - no_duplicate_case_values
   - test_types_in_equals
   - throw_in_finally
+  - unnecessary_statements
   - unrelated_type_equality_checks
   - valid_regexps
 
@@ -33,6 +35,7 @@ linter:
   - always_declare_return_types
   - always_put_control_body_on_new_line
   - always_require_non_null_named_parameters
+  - always_put_required_named_parameters_first
 
   # Infer types when possible.
   #- always_specify_types
@@ -88,12 +91,16 @@ linter:
   - package_prefixed_library_names
   - parameter_assignments
   - prefer_adjacent_string_concatenation
+  - prefer_asserts_in_initializer_lists
 
   # I prefer using the class constructor to create empty instances.
   #- prefer_collection_literals
 
   - prefer_conditional_assignment
   - prefer_const_constructors
+  - prefer_const_constructors_in_immutables
+  - prefer_const_declarations
+  - prefer_const_literals_to_create_immutables
   - prefer_constructors_over_static_methods
   - prefer_contains
 
@@ -108,15 +115,18 @@ linter:
   - prefer_interpolation_to_compose_strings
   - prefer_is_empty
   - prefer_is_not_empty
+  - prefer_single_quotes
 
   # Do not add docs when there is nothing to be documented (e.g. constructors).
   #- public_member_api_docs
 
   - recursive_getters
   - slash_for_doc_comments
-  - sort_constructors_first
+
+  # Put variables before constructors
+  # - sort_constructors_first
+
   - sort_unnamed_constructors_first
-  - super_goes_last
 
   # Infer types as much as possible, for example from a base class.
   #- type_annotate_public_apis

@@ -2,8 +2,8 @@ name:         glutils
 version:      0.0.1
 author:       Herman Bergwerf <hermanbergwerf@gmail.com>
 description:  Simple WebGL utility library
-homepage:     https://github.com/hermanbergwerf/glutils
+homepage:     https://github.com/bergwerf/glutils
 environment:
-  sdk:        '>=1.8.0 <2.0.0'
+  sdk:        '>=2.0.0 <3.0.0'
 dependencies:
-  vector_math: ^2.0.4
+  vector_math: ^2.0.8

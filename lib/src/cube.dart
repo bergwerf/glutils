@@ -1,16 +1,16 @@
 // Copyright (c) 2016, Herman Bergwerf. All rights reserved.
-// Use of this source code is governed by an AGPL-3.0-style license
+// Use of this source code is governed by a MIT-style license
 // that can be found in the LICENSE file.
 
 part of glutils;
 
 class GlCube extends GlGeometry {
   factory GlCube(gl.RenderingContext ctx,
-      {GlShader shader: null,
-      GlShader wireframeShader: null,
-      GlShader surfaceShader: null,
-      Vector4 wireframeColor: null,
-      Vector4 surfaceColor: null}) {
+      {GlShader shader,
+      GlShader wireframeShader,
+      GlShader surfaceShader,
+      Vector4 wireframeColor,
+      Vector4 surfaceColor}) {
     return new GlCube._create(
         new GlObject.from(
             ctx,

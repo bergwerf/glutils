@@ -1,16 +1,16 @@
 // Copyright (c) 2016, Herman Bergwerf. All rights reserved.
-// Use of this source code is governed by an AGPL-3.0-style license
+// Use of this source code is governed by a MIT-style license
 // that can be found in the LICENSE file.
 
 part of glutils;
 
 class GlSphere extends GlGeometry {
   factory GlSphere(gl.RenderingContext ctx, int phiSegments, int thetaSegments,
-      {GlShader shader: null,
-      GlShader wireframeShader: null,
-      GlShader surfaceShader: null,
-      Vector4 wireframeColor: null,
-      Vector4 surfaceColor: null}) {
+      {GlShader shader,
+      GlShader wireframeShader,
+      GlShader surfaceShader,
+      Vector4 wireframeColor,
+      Vector4 surfaceColor}) {
     final positions = generateSpherePositions(phiSegments, thetaSegments);
     return new GlSphere._create(
         new GlObject.from(
@@ -53,9 +53,9 @@ class GlSphere extends GlGeometry {
     var i = 2;
 
     for (var phi = 1; phi < phiSegments; phi++) {
-      final p = PI / phiSegments * phi;
+      final p = pi / phiSegments * phi;
       for (var theta = 0; theta < thetaSegments; theta++) {
-        final t = 2 * PI / thetaSegments * theta;
+        final t = 2 * pi / thetaSegments * theta;
         v[i++] = new Vector3(sin(p) * cos(t), sin(p) * sin(t), cos(p));
       }
     }

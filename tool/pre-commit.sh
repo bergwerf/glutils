@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Copyright (c) 2017, Herman Bergwerf. All rights reserved.
-# Use of this source code is governed by an AGPL-3.0-style license
+# Use of this source code is governed by a MIT-style license
 # that can be found in the LICENSE file.
 
-unifmt -c 'Herman Bergwerf' -l 'AGPL-3.0'
+unifmt -c 'Herman Bergwerf' -l 'MIT'
